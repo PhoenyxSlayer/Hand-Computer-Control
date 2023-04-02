@@ -2,6 +2,10 @@ import pyautogui as mouse
 import tkinter as tk
 import math
 import numpy as np
+from pynput.keyboard import Key, Controller
+import time
+
+keyboard = Controller()
 
 def controlMouse(thumbX, thumbY, pointerX, pointerY, frameR, camW, camH, data, confidence):
     mouse.FAILSAFE = False
@@ -24,24 +28,26 @@ def controlMouse(thumbX, thumbY, pointerX, pointerY, frameR, camW, camH, data, c
     palm = data[3]
     thumb = data[4]
 
-    isFist = False
-    print(isFist)
     if fist > confidence:
-        isFist = True
+        keyboard.press(Key.media_volume_down)
+        keyboard.release(Key.media_volume_down)
+        time.sleep(0.5)
 
     if (ok > confidence and dist <= 5) or dist <= 5:
         mouse.click()
 
     if one > confidence:
-        return
+        mouse.hotkey('alt', 'right')
+        time.sleep(1)
     
     if palm > confidence:
-        return
+        keyboard.press(Key.media_volume_up)
+        keyboard.release(Key.media_volume_up)
+        time.sleep(0.5)
     
     if thumb > confidence:
         mouse.hotkey('alt', 'left')
-        
-    print(isFist)
+        time.sleep(1)
 
     #if x <  and x
     #mouse.dragTo(x, y, button='left')
