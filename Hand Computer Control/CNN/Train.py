@@ -8,7 +8,7 @@ from numpy import asarray
 import cv2
 import os
 
-data = tf.keras.utils.image_dataset_from_directory("C:/Users/Phoenyx/Source/Repos/Hand Computer Control/CNN/Pictures/Training", image_size=(100,100))
+data = tf.keras.utils.image_dataset_from_directory("Path to Training images here", image_size=(100,100))
 print(data.class_names)
 print(data)
 
